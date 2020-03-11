@@ -12,14 +12,21 @@ class Object(object):
 #Global Variables
 scan_data = None
 bot = Object()
-bot.roaming = True # boolean on if the robot is close enough to follow a wall
+bot.roaming = True # if the robot is looking for a wall
+bot.speed = 3 #factor to increase the speed by
 
 data = {'States':['R.TooClose','R.Close','R.Med', 'R.Far','R.TooFar','L.Close','L.Far','F.TooClose','F.Close', \
         'F.Med', 'F.Far','RF.Close','RF.Far','O.AppWall','O.Parallel','O.AwayWall','O.Undef'],\
         'Fwd':[1,10,20,10,0,0,0,-10,-1,0,0,0,0,-10,10,0,0],'Left':[1,1,0,-1,-10,-1,0,0,0,0,0,0,0,0,-1,0,0],\
         'Right':[-10,-1,0,1,10,0,0,10,1,0,0,0,1,1,-1,1,0]}
+
+#After running long enough for convergence
+datav2 = {'States':['R.TooClose','R.Close','R.Med', 'R.Far','R.TooFar','L.Close','L.Far','F.TooClose','F.Close', \
+        'F.Med', 'F.Far','RF.Close','RF.Far','O.AppWall','O.Parallel','O.AwayWall','O.Undef'],\
+        'Fwd':[1,43,76,50,0,44,40,-10,-1,60,0,43,0,-10,10,0,0],'Left':[1,1,0,-1,-10,-1,0,0,0,0,0,0,0,0,-1,0,0],\
+        'Right':[-10,-1,0,1,49,0,0,10,46,0,0,0,1,1,-1,1,0]}
             
-qTable = pd.DataFrame(data)
+qTable = pd.DataFrame(datav2)
 del qTable['States']
 Qarray = qTable.to_numpy()
 Rarray = Qarray.copy()
@@ -75,6 +82,8 @@ def stateDis():
             bot.ref = 11 #Close
         else:
             bot.ref = 12 #Far
+    elif bot.minDis >= 2:
+        bot.roaming = True
     return bot.ref
     #print("The current state is ", bot.state)
     
@@ -95,9 +104,9 @@ def Qtable(sides):
     
     f = bot.Qlast + alpha*(reward + gamma * maxQ - bot.Qlast)
     newQ = round(int(f),2)
-    print("new Q ", newQ, "Reward ", reward)
+    #print("new Q ", newQ, "Reward ", reward)
     if maxIdx == 0:
-        bot.pose.x = 0.1
+        bot.pose.x = 0.1*bot.speed
     elif maxIdx ==1:
         turn(sides,10, 'L')
     elif maxIdx ==2:
@@ -107,26 +116,26 @@ def Qtable(sides):
     bot.vel_pub.publish(bot.pose)
     
     bot.Qlast = newQ
-    if (bot.count % 10 == 0):
-        print(Qarray)
+    if (bot.count % 1000 == 0):
+        print(Qarray, bot.count)
 
     
 def findWall(sides):
     #print("The closest side is ", bot.state)
     #print("Min dis: ", bot.minDis)
-    if bot.minDis >= 0.6:
+    if bot.minDis >= 0.4:
         if bot.state == ['Front']:
-            bot.pose.x = 0.1
-            bot.pose.y = 0.01
-            print("moving towards Front", bot.minDis)
+            bot.pose.x = 0.1*bot.speed
+            bot.pose.y = 0.01*bot.speed
+            #print("moving towards Front", bot.minDis)
         if bot.state == ['Left']:
-            bot.pose.x = 0.01
-            bot.pose.y = 0.1
-            print("moving towards Left", bot.MinDis)
+            bot.pose.x = 0.01*bot.speed
+            bot.pose.y = 0.1*bot.speed
+            #print("moving towards Left", bot.minDis)
         if bot.state == ['Right']:
-            bot.pose.x = -0.01
-            bot.pose.y = -0.1
-            print("moving towards Right", bot.MinDis)
+            bot.pose.x = -0.01*bot.speed
+            bot.pose.y = -0.1*bot.speed
+            #print("moving towards Right", bot.minDis)
         bot.vel_pub.publish(bot.pose)
     else:
         stopMotion()
@@ -137,7 +146,6 @@ def followWall(sides):
     while bot.state != ['Right']:
         turn(sides, 5, 'R')
         updateScan(sides)
-    print("Begin following wall")
     Qtable(sides)
     
     
@@ -149,8 +157,8 @@ def turn(sides, angle, direction):
     i = 0
     while i < 2:
         bot.pose.theta = angle
-        bot.pose.x = 0.01
-        bot.pose.y = 0.01
+        bot.pose.x = 0.02*bot.speed 
+        bot.pose.y = 0.02*bot.speed 
         bot.vel_pub.publish(bot.pose)
         updateScan(sides)
         #print("Turning ", direction)
@@ -174,16 +182,19 @@ def Main():
 
     # Wait until the first scan is available.
     while scan_data is None and not rospy.is_shutdown():
-        rospy.sleep(.1)
-
-    #execute at 10hz.
-    rate = rospy.Rate(10) 
+        
+        qTable = pd.DataFrame(datav2)
+        print("Starting Q Matrix which will also be the static rewards matrix used.")
+        print(qTable)
+        rospy.sleep(3)
+        #execute at 10hz.
+        rate = rospy.Rate(10) 
     
     while not rospy.is_shutdown():
-        turn(sides,50,'r')
-        stopMotion()
-        print("ensure robot is stopped")
-        rospy.sleep(3)
+        turn(sides,50,'r') #avoid hitting weird corner at start
+        stopMotion() #ensure robot is stopped from last run
+        rospy.sleep(1)
+        
         while bot.roaming == True:
             updateScan(sides)
             findWall(sides)
@@ -194,10 +205,7 @@ def Main():
             bot.count +=1
             stopMotion()
         rate.sleep()
-        
-        
-        
-    
-# This is how we usually call the main method in Python. 
+                
+            
 if __name__ == "__main__":
     Main()

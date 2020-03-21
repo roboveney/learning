@@ -35,7 +35,11 @@ def message(msg,color,size,x,y):
 
 def randBlock(axis):
     return round(random.randrange(0, axis - bit))
-    
+
+def snake(bit, snake_list):
+    for x in snake_list:
+        pygame.draw.rect(dis, white, [x[0], x[1], bit, bit])
+        
 def gameLoop(): 
     game_over = False
     game_close = False
@@ -46,6 +50,9 @@ def gameLoop():
     y1 = yMax/2
     x1_change = 0
     y1_change = 0
+            
+    snake_list = []
+    length_of_snake = 1    
     
     foodx = randBlock(xMax)
     foody = randBlock(yMax)
@@ -102,21 +109,33 @@ def gameLoop():
         elif y1 < 0:
             y1 = yMax
         
+        dis.fill(black)
+        snake_head = []
+        snake_head.append(x1)
+        snake_head.append(y1)
+        snake_list.append(snake_head)
+        if len(snake_list) > length_of_snake:
+            del snake_list[0]
+                
+        snake(bit,snake_list)
+        
         pygame.draw.rect(dis,white, [x1,y1,bit,bit])
         pygame.draw.rect(dis,green, [foodx, foody, bit, bit])
         pygame.draw.rect(dis,red, [poisonx, poisony, bit, bit])
+        pygame.draw.rect(dis,blue, [treatx, treaty, bit, bit])
         message("Score: ", green, 30, xMax-100, yMax-50)
         message(str(score), green, 30, xMax-30, yMax-50)
         
         pygame.display.update()
         
         if foodx-8 <= x1 <= foodx+8 and foody-8 <= y1 <= foody+8:
-            print("YUM!!!")
             pygame.draw.rect(dis,black, [foodx,foody,10,10])
             foodx = randBlock(xMax)
             foody = randBlock(yMax)
-            snake_speed +=1
-            score +=1
+            snake_speed += 1
+            length_of_snake += 1
+            score += 1
+            
         if poisonx-8 <= x1 <= poisonx+8 and poisony-8 <= y1 <= poisony+8:
             print("I feel sick")
             game_close = True
@@ -124,8 +143,9 @@ def gameLoop():
         if treatx-8 <= x1 <= treatx+8 and treaty-8 <= y1 <= treaty+8:
             if snake_speed > 15:
                 snake_speed -=10
+                treatx = randBlock(xMax)
+                treaty = randBlock(yMax)
                 pygame.draw.rect(dis,black, [treatx, treaty, bit, bit])
-            
                 
         pygame.draw.rect(dis,black, [x1,y1,10,10])
         pygame.draw.rect(dis,black, [xMax-30, yMax-50, 30, 100])

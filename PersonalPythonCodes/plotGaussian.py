@@ -18,8 +18,8 @@ def find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()
     return idx
 
-x = np.linspace(-0.5, 0.5, 100)
-plt.plot(x, gaussian(x, 0, 0.15))
+x = np.linspace(-0.4, 0.4, 500)
+plt.plot(x, gaussian(x,0, 0.1))
 
 y = np.array([x,gaussian(x,0,0.15)])
 

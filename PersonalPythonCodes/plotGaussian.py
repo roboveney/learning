@@ -18,14 +18,19 @@ def find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()
     return idx
 
-x = np.linspace(-0.4, 0.4, 500)
-plt.plot(x, gaussian(x,0, 0.1))
+<<<<<<< HEAD
+x = np.linspace(0.2, 0.5, 100)
+plt.plot(x, gaussian(x,0.35, 0.03))
+=======
+x = np.linspace(-0.5, 0.5, 100)
+plt.plot(x, gaussian(x, 0, 0.15))
+>>>>>>> parent of a146a3e... small updates to ref doc and added Gaussian plot example in python codes
 
-y = np.array([x,gaussian(x,0,0.15)])
+y = np.array([x,gaussian(x, 0.35, 0.03)])
 
 plt.show()
 
-idx = find_nearest(y[0],-0.2)
+idx = find_nearest(y[0],0.3)
 check = y[1][idx]
 
 print(check)

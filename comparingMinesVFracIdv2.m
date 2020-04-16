@@ -20,19 +20,41 @@ y2 = minesAccel;
 % error
 dy = y2-y1 ;
 labels = ["Mines X","Mines Y", "Mines Z";"FracID X", "FracID Y", "FracID Z";"Error X","Error Y","Error Z"];
+steps = [1,6,16,17,27,28,33,35,40,45,46,51];
 
-for i=1:3
+for i=1:1
     figure
     hold on
     subplot(3,1,1);
     plot(t,y2(:,i),'k');
+    mPeaks = findpeaks(y2(:,i),t,'MinPeakProminence',5);
+    for j =1:12
+        line([steps(j) steps(j)], get(gca, 'ylim'),'Color','cyan','LineStyle','--');
+        txt = (['S-',num2str(j)]);
+        l= ylim;
+        text(steps(j),(l(1)+(l(2)-l(1))/8),txt,'FontSize',6);
+    end
     legend(labels(1,i))
 
     subplot(3,1,2);
     plot(t,y1(:,i),'b')
+    fPeaks = findpeaks(y1(:,i),t,'MinPeakProminence',5);
+    for j =1:12
+        line([steps(j) steps(j)], get(gca, 'ylim'),'Color','cyan','LineStyle','--');
+        txt = (['S-',num2str(j)]);
+        l= ylim;
+        text(steps(j),(l(1)+(l(2)-l(1))/8),txt,'FontSize',6);
+    end
     legend(labels(2,i))
 
     subplot(3,1,3);
     plot(t,dy(:,i),'r');
+    peakDiff = mPeaks - fPeaks;
+    for j =1:12
+        line([steps(j) steps(j)], get(gca, 'ylim'),'Color','cyan','LineStyle','--');
+        txt = (['S-',num2str(j)]);
+        l= ylim;
+        text(steps(j),(l(1)+(l(2)-l(1))/8),txt,'FontSize',6);
+    end
     legend(labels(3,i))
 end

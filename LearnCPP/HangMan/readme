@@ -1,0 +1,36 @@
+##Readme for created HangMan game
+
+#SET UP SFML WITH C++ IN TERMINAL
+	1. create cpp file using 
+		$ gedit main.cpp
+	2. compile cpp using 
+		$ g++ -c main.cpp
+	3. linke with SFML library and name executable
+		$ g++ main.o -o NamedExec -lsfml-graphics -lsfml-window -lsfml-system
+	4. can now run program using ./NamedExec
+
+#Link existing code with Qt
+	1. in file where .cpp is already save run
+		$ qmake -project
+		$ qmake
+	2. there will now be a Makefile open this and add the following to LIBS
+		-lsfml-graphics -lsfml-window -lsfml-system
+	3. now run make and it will generate a function Qt project that the code can be run and tested in
+
+
+#PSUEDO CODE OUTLINE
+	No Graphic version
+	1. show new game button to start game
+	2. randomly select word from library
+	3. display number of blanks representing the legnth of the word
+	4. prompt user to select a letter (only take letters)
+	5. increase counter for number of attempts
+	6. search goal word for any of those letters and display if found
+	7. check after each iteration if the word is completed or max count reached
+	8. once word is completed display you win
+	9. if max count is reached display you lose
+
+	Adding Graphics
+	1. create graphics for background and characters body parts
+	2. create if loop that is run at the end of each attempt that displays the body parts that correlate to the current attempt count
+	3. make a two player version were first user is prompted to enter a word (only take chars)

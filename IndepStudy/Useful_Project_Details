@@ -1,0 +1,24 @@
+## Useful Details for Project ##
+- Husky simulations http://www.clearpathrobotics.com/assets/guides/kinetic/husky/SimulatingHusky.html
+- Github https://github.com/wvu-navLab/CLN
+- Original paper https://arxiv.org/abs/1906.08849
+
+
+??? Best Method for building a new C++ project that will use husky
+	-fork from husky_customization on github, mentioned in readme
+	-use the actual husky base file
+	-adjust the move_base launch files to utilize external code
+	-follow the implementation of robot_localization and replace its ekf filter with the labs
+	
+
+## KALMAN FILTER RESOURCES ##
+
+-Tutorial on robot_localization that explains implementation of kalman filter https://github.com/methylDragon/ros-sensor-fusion-tutorial/blob/master/01%20-%20ROS%20and%20Sensor%20Fusion%20Tutorial.md
+
+-turtlebot tutorial for using robot_localization another method to understand kalman filter implementation https://kapernikov.com/the-ros-robot_localization-package/
+
+-How Kalman filter works in pictures http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/
+
+-Video on working with robot localization and graphic of overall structure https://clearpathrobotics.com/blog/2016/06/working-robot-localization-package/
+
+

@@ -1,0 +1,21 @@
+# Running Basic Husky Navigation Stack
+
+Run  ~$ roslaunch husky_gazebo husky_playpen.launch
+	roslaunch husky_viz view_robot.launch
+	roslaunch husky_navigation gmapping_demo.launch
+
+# Source and Launching the observer control
+Run ~$	cd code/Data_Fusion/
+	source devel/setup.bash
+	roslaunch launch/husky_sim_main.launch
+
+
+
+#How to publish to cmd_vel
+rostopic pub -1 /husky_velocity_controller/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
+
+
+
+# Running CLN Navigation Stack
+
+

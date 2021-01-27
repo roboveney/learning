@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Ring_Buffer.dir/Ring_Buffer.c.o"
   "CMakeFiles/Ring_Buffer.dir/main.c.o"
   "Ring_Buffer"
   "Ring_Buffer.pdb"

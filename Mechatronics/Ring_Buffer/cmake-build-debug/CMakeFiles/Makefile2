@@ -94,12 +94,12 @@ clean: CMakeFiles/Ring_Buffer.dir/clean
 CMakeFiles/Ring_Buffer.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ring_Buffer.dir/build.make CMakeFiles/Ring_Buffer.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ring_Buffer.dir/build.make CMakeFiles/Ring_Buffer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target Ring_Buffer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target Ring_Buffer"
 .PHONY : CMakeFiles/Ring_Buffer.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Ring_Buffer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Ring_Buffer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Ring_Buffer.dir/rule

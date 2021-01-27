@@ -143,6 +143,33 @@ Ring_Buffer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ring_Buffer.dir/build.make CMakeFiles/Ring_Buffer.dir/build
 .PHONY : Ring_Buffer/fast
 
+Ring_Buffer.o: Ring_Buffer.c.o
+
+.PHONY : Ring_Buffer.o
+
+# target to build an object file
+Ring_Buffer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ring_Buffer.dir/build.make CMakeFiles/Ring_Buffer.dir/Ring_Buffer.c.o
+.PHONY : Ring_Buffer.c.o
+
+Ring_Buffer.i: Ring_Buffer.c.i
+
+.PHONY : Ring_Buffer.i
+
+# target to preprocess a source file
+Ring_Buffer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ring_Buffer.dir/build.make CMakeFiles/Ring_Buffer.dir/Ring_Buffer.c.i
+.PHONY : Ring_Buffer.c.i
+
+Ring_Buffer.s: Ring_Buffer.c.s
+
+.PHONY : Ring_Buffer.s
+
+# target to generate assembly for a file
+Ring_Buffer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ring_Buffer.dir/build.make CMakeFiles/Ring_Buffer.dir/Ring_Buffer.c.s
+.PHONY : Ring_Buffer.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -179,6 +206,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Ring_Buffer"
+	@echo "... Ring_Buffer.o"
+	@echo "... Ring_Buffer.i"
+	@echo "... Ring_Buffer.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

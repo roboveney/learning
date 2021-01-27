@@ -17,12 +17,12 @@ int main(void)
     struct Ring_Buffer_F rbF_pt;
     rb_initialize_F(&rbF_pt);
     if (rbF_pt.start_index != 0)
-        printf("rb_initialize_F: start_index = %i, should = 0. \n",rbF_pt.start_index);
+        printf("1: rb_initialize_F: start_index = %i, should = 0. \n",rbF_pt.start_index);
     else
         score++;
 
     if (rbF_pt.end_index != 0)
-        printf("rb_initialize_F: end_index = %i, should = 0. \n",rbF_pt.end_index);
+        printf("2: rb_initialize_F: end_index = %i, should = 0. \n",rbF_pt.end_index);
     else
         score++;
 
@@ -31,12 +31,12 @@ int main(void)
     struct Ring_Buffer_C rbC_pt;
     rb_initialize_C(&rbC_pt);
     if (rbC_pt.start_index != 0)
-        printf("rb_initialize_C: start_index = %i, should = 0. \n",rbF_pt.start_index);
+        printf("3: rb_initialize_C: start_index = %i, should = 0. \n",rbF_pt.start_index);
     else
         score++;
 
     if (rbC_pt.end_index != 0)
-        printf("rb_initialize_C: end_index = %i, should = 0. \n",rbF_pt.end_index);
+        printf("4: rb_initialize_C: end_index = %i, should = 0. \n",rbF_pt.end_index);
     else
         score++;
 
@@ -48,7 +48,7 @@ int main(void)
     rbF_pt.end_index=(RB_LENGTH_F-1);
     int F_len = rb_length_F(&rbF_pt);
     if (F_len != 2)
-        printf("rb_length_F: normal case: = %i, should = 2. \n",F_len); //2
+        printf("5: rb_length_F: normal case: = %i, should = 2. \n",F_len); //2
     else
         score++;
 
@@ -56,7 +56,7 @@ int main(void)
     rbF_pt.end_index=1;
     F_len = rb_length_F(&rbF_pt);
     if (F_len != ((rbF_pt.end_index-rbF_pt.start_index)&RB_MASK_F))
-        printf("rb_length_F: wrap case: = %i, should = %i. \n",F_len,(rbF_pt.end_index-rbF_pt.start_index)&RB_MASK_F);
+        printf("6: rb_length_F: wrap case: = %i, should = %i. \n",F_len,(rbF_pt.end_index-rbF_pt.start_index)&RB_MASK_F);
     else
         score++;
 
@@ -67,7 +67,7 @@ int main(void)
     rbC_pt.end_index=(RB_LENGTH_C-1);
     int C_len = rb_length_C(&rbC_pt);
     if (C_len != 2)
-        printf("rb_length_C: normal case: = %i, should = 2. \n",C_len);
+        printf("7: rb_length_C: normal case: = %i, should = 2. \n",C_len);
     else
         score++;
 
@@ -75,7 +75,7 @@ int main(void)
     rbC_pt.end_index=1;
     C_len = rb_length_C(&rbC_pt);
     if (C_len != ((rbC_pt.end_index-rbC_pt.start_index)&RB_MASK_C))
-        printf("rb_length_C: wrap case: = %i, should = %i. \n",C_len,(rbC_pt.end_index-rbC_pt.start_index)&RB_MASK_C);
+        printf("8: rb_length_C: wrap case: = %i, should = %i. \n",C_len,(rbC_pt.end_index-rbC_pt.start_index)&RB_MASK_C);
     else
         score++;
 
@@ -88,18 +88,18 @@ int main(void)
 
     rb_push_back_F(&rbF_pt,17.1);
     if (rbF_pt.end_index != 0)
-        printf("rb_push_back_F: end_index = %i, should = 0 . \n",rbF_pt.end_index);
+        printf("9: rb_push_back_F: end_index = %i, should = 0 . \n",rbF_pt.end_index);
     else
         score++;
 
     if (rbF_pt.start_index != 1)
-        printf("rb_push_back_F: start_index = %i, should = 1. \n",rbF_pt.start_index);
+        printf("10: rb_push_back_F: start_index = %i, should = 1. \n",rbF_pt.start_index);
     else
         score++;
 
     float val_F = rbF_pt.buffer[ (rbF_pt.end_index-1) & RB_MASK_F];
     if (fabs(val_F- 17.1) > float_tol ) //probably a  better way to do this...
-        printf("rb_push_back_F: value, should = 17.1: %f \n",val_F);
+        printf("11: rb_push_back_F: value, should = 17.1: %f \n",val_F);
     else
         score++;
 
@@ -111,12 +111,12 @@ int main(void)
 
     rb_push_back_C(&rbC_pt,'d');
     if (rbC_pt.end_index != 0)
-        printf("rb_push_back_C: end_index = %i, should = 0 . \n",rbC_pt.end_index);
+        printf("12: rb_push_back_C: end_index = %i, should = 0 . \n",rbC_pt.end_index);
     else
         score++;
 
     if (rbC_pt.start_index != 1)
-        printf("rb_push_back_C: start_index = %i, should = 1. \n",rbC_pt.start_index);
+        printf("13: rb_push_back_C: start_index = %i, should = 1. \n",rbC_pt.start_index);
     else
         score++;
 
@@ -135,18 +135,18 @@ int main(void)
 
     rb_push_front_F(&rbF_pt,18.2);
     if (rbF_pt.end_index != (RB_LENGTH_F-2))
-        printf("rb_push_front_F: end_index = %i, should = %i . \n",rbF_pt.end_index,(RB_LENGTH_F-2));
+        printf("14: rb_push_front_F: end_index = %i, should = %i . \n",rbF_pt.end_index,(RB_LENGTH_F-2));
     else
         score++;
 
     if (rbF_pt.start_index != (RB_LENGTH_F-1))
-        printf("rb_push_front_F: start_index = %i, should = %i. \n",rbF_pt.start_index,(RB_LENGTH_F-1));
+        printf("15: rb_push_front_F: start_index = %i, should = %i. \n",rbF_pt.start_index,(RB_LENGTH_F-1));
     else
         score++;
 
     val_F = rbF_pt.buffer[rbF_pt.start_index & RB_MASK_F];
     if (fabs(val_F- 18.2) > float_tol ) //probably a  better way to do this...
-        printf("rb_push_front_F: value, should = 18.2: %f \n",val_F);
+        printf("16: rb_push_front_F: value, should = 18.2: %f \n",val_F);
     else
         score++;
 
@@ -158,18 +158,18 @@ int main(void)
 
     rb_push_front_C(&rbC_pt,'e');
     if (rbC_pt.end_index != (RB_LENGTH_C-2))
-        printf("rb_push_front_C: end_index = %i, should = %i . \n",rbC_pt.end_index,(RB_LENGTH_C-2));
+        printf("17: rb_push_front_C: end_index = %i, should = %i . \n",rbC_pt.end_index,(RB_LENGTH_C-2));
     else
         score++;
 
     if (rbC_pt.start_index != (RB_LENGTH_C-1))
-        printf("rb_push_front_C: start_index = %i, should = %i. \n",rbC_pt.start_index,(RB_LENGTH_C-1));
+        printf("18: rb_push_front_C: start_index = %i, should = %i. \n",rbC_pt.start_index,(RB_LENGTH_C-1));
     else
         score++;
 
     val_C = rbC_pt.buffer[rbC_pt.start_index & RB_MASK_C];
     if (val_C != 'e')
-        printf("rb_push_front_C: value, should = 'e': %c \n",val_C);
+        printf("19: rb_push_front_C: value, should = 'e': %c \n",val_C);
     else
         score++;
 
@@ -183,12 +183,12 @@ int main(void)
     val_F = rb_pop_back_F(&rbF_pt);
 
     if (rbF_pt.end_index != (RB_LENGTH_F-1))
-        printf("rb_pop_back_F: end_index = %i, should = %i . \n",rbF_pt.end_index,(RB_LENGTH_F-1));
+        printf("20: rb_pop_back_F: end_index = %i, should = %i . \n",rbF_pt.end_index,(RB_LENGTH_F-1));
     else
         score++;
 
     if (fabs(val_F- 5.3) > float_tol ) //probably a  better way to do this...
-        printf("rb_pop_back_F: value, should = 5.3: %f \n",val_F);
+        printf("21: rb_pop_back_F: value, should = 5.3: %f \n",val_F);
     else
         score++;
 
@@ -197,7 +197,7 @@ int main(void)
     val_F = rb_pop_back_F(&rbF_pt);
 
     if (rbF_pt.start_index != (RB_LENGTH_F-1))
-        printf("rb_pop_back_F: start_index = %i, should = %i . \n",rbF_pt.end_index,(RB_LENGTH_F-1));
+        printf("22: rb_pop_back_F: start_index = %i, should = %i . \n",rbF_pt.end_index,(RB_LENGTH_F-1));
 
 
     //pop_back (C)
@@ -209,12 +209,12 @@ int main(void)
     val_C = rb_pop_back_C(&rbC_pt);
 
     if (rbC_pt.end_index != (RB_LENGTH_C-1))
-        printf("rb_pop_back_C: end_index = %i, should = %i . \n",rbC_pt.end_index,(RB_LENGTH_C-1));
+        printf("23: rb_pop_back_C: end_index = %i, should = %i . \n",rbC_pt.end_index,(RB_LENGTH_C-1));
     else
         score++;
 
     if (val_C != 'h')
-        printf("rb_pop_back_C: value, should = 'h': %c \n",val_C);
+        printf("24: rb_pop_back_C: value, should = 'h': %c \n",val_C);
     else
         score++;
 
@@ -222,7 +222,7 @@ int main(void)
     val_C = rb_pop_back_C(&rbC_pt);
 
     if (rbC_pt.start_index != (RB_LENGTH_C-1))
-        printf("rb_pop_back_C: start_index = %i, should = %i . \n",rbC_pt.end_index,(RB_LENGTH_C-1));
+        printf("25: rb_pop_back_C: start_index = %i, should = %i . \n",rbC_pt.end_index,(RB_LENGTH_C-1));
     else
         score++;
 
@@ -237,12 +237,12 @@ int main(void)
     val_F = rb_pop_front_F(&rbF_pt);
 
     if (rbF_pt.start_index != 0)
-        printf("rb_pop_front_F: start_index = %i, should = 0 . \n",rbF_pt.start_index);
+        printf("26: rb_pop_front_F: start_index = %i, should = 0 . \n",rbF_pt.start_index);
     else
         score++;
 
     if (fabs(val_F- 5.3) > float_tol ) //probably a  better way to do this...
-        printf("rb_pop_front_F: value, should = 5.3: %f \n",val_F);
+        printf("27: rb_pop_front_F: value, should = 5.3: %f \n",val_F);
     else
         score++;
 
@@ -250,7 +250,7 @@ int main(void)
     //check end=start case
     val_F = rb_pop_front_F(&rbF_pt);
     if (rbF_pt.start_index != 0)
-        printf("rb_pop_front_F: start_index = %i, should = 0 . \n",rbF_pt.start_index);
+        printf("28: rb_pop_front_F: start_index = %i, should = 0 . \n",rbF_pt.start_index);
     else
         score++;
 
@@ -264,12 +264,12 @@ int main(void)
     val_C = rb_pop_front_C(&rbC_pt);
 
     if (rbC_pt.start_index != 0)
-        printf("rb_pop_front_C: start_index = %i, should = 0 . \n",rbC_pt.start_index);
+        printf("29: rb_pop_front_C: start_index = %i, should = 0 . \n",rbC_pt.start_index);
     else
         score++;
 
     if (val_C != 'h')
-        printf("rb_pop_front_C: is %c, should be: 'h' \n",val_C);
+        printf("30: rb_pop_front_C: is %c, should be: 'h' \n",val_C);
     else
         score++;
 
@@ -277,7 +277,7 @@ int main(void)
     val_C = rb_pop_front_C(&rbC_pt);
 
     if (rbC_pt.start_index != 0)
-        printf("rb_pop_front_C: start_index = %i, should = 0 . \n",rbC_pt.start_index);
+        printf("31: rb_pop_front_C: start_index = %i, should = 0 . \n",rbC_pt.start_index);
     else
         score++;
 
@@ -290,7 +290,7 @@ int main(void)
     rbF_pt.start_index=RB_LENGTH_F-1;
     val_F = rb_get_F(&rbF_pt,5);
     if (fabs(val_F- 9.8) > float_tol ) //probably a  better way to do this...
-        printf("rb_get_F: is %f, should be: = 9.8 \n",val_F);
+        printf("32: rb_get_F: is %f, should be: = 9.8 \n",val_F);
     else
         score++;
 
@@ -303,7 +303,7 @@ int main(void)
     rbC_pt.start_index = RB_LENGTH_C-1;
     val_C = rb_get_C(&rbC_pt,5);
     if (val_C != 'j')
-        printf("rb_get_C: value is %c, should be = 'j' \n",val_C);
+        printf("33: rb_get_C: value is %c, should be = 'j' \n",val_C);
     else
         score++;
 
@@ -315,7 +315,7 @@ int main(void)
     rb_set_F(&rbF_pt,3,21.4);
     val_F = rbF_pt.buffer[2];
     if (fabs(val_F- 21.4) > float_tol ) //probably a  better way to do this...
-        printf("rb_set_F: value is %f, should be: 21.4:\n",val_F);
+        printf("34: rb_set_F: value is %f, should be: 21.4:\n",val_F);
     else
         score++;
 
@@ -326,7 +326,7 @@ int main(void)
     rb_set_C(&rbC_pt,3,'k');
     val_C = rbC_pt.buffer[2];
     if (val_C != 'k')
-        printf("rb_set_C: value is %c, should be 'k' \n",val_C);
+        printf("35: rb_set_C: value is %c, should be 'k' \n",val_C);
     else
         score++;
 

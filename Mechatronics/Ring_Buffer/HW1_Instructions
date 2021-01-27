@@ -1,10 +1,18 @@
-Here is the script used to grade your programming accuracy. If you have questions, grade it for your self to find out where your issues are. Thanks to Rich Pratt for a first pass at this.
+Here is the script used to grade your programming accuracy. If you have questions, grade it for your
+self to find out where your issues are. Thanks to Rich Pratt for a first pass at this.
 
 main.c
 
-ATTENTION: Their were a few errors in the comments for the Ring_Buffer guidance. I have uploaded a new-template. Basically, the end_index should always point to the first unused element in the array and the start index should point to the first used element. Thus during a push-back operation you should set the value at the end_index then increment (which was the error in the instruction comments).  Also, the only time that the end and the start can be the same value is when the buffer has length zero an all  entries are unused.  This affects some of the logic for push back/front and pop back/front operations.  Please review your code to accommodate.
+ATTENTION: Their were a few errors in the comments for the Ring_Buffer guidance. I have uploaded a new-
+template. Basically, the end_index should always point to the first unused element in the array and the
+start index should point to the first used element. Thus during a push-back operation you should set the
+value at the end_index then increment (which was the error in the instruction comments).  Also, the only t
+ime that the end and the start can be the same value is when the buffer has length zero an all  entries are
+unused.  This affects some of the logic for push back/front and pop back/front operations.  Please review
+your code to accommodate.
 
-Also, note the slight modification (F->C) in the following 2 function prototypes that need to be updated relative to the initial template code.
+Also, note the slight modification (F->C) in the following 2 function prototypes that need to be updated
+relative to the initial template code.
 
 char rb_get_C( const struct Ring_Buffer_C* p_buf, uint8_t index);
 
@@ -26,6 +34,8 @@ Ring_Buffer.zip
 
 Part 2:
 
-Review all 5 labs. Identify key program capabilities that span multiple labs. Provide a list of what functionalities you plan on reusing from one lab to the next. What functions should you plan on writing as you go for reuse?
+Review all 5 labs. Identify key program capabilities that span multiple labs. Provide a list of what
+functionalities you plan on reusing from one lab to the next. What functions should you plan on writing as
+you go for reuse?
 
 Turn in a short discussion in a pdf or docx format.

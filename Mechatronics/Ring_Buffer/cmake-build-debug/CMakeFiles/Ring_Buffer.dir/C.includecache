@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cveney/learning/Mechatronics/Ring_Buffer/Ring_Buffer.c
+Ring_Buffer.h
+/home/cveney/learning/Mechatronics/Ring_Buffer/Ring_Buffer.h
+
+/home/cveney/learning/Mechatronics/Ring_Buffer/Ring_Buffer.h
+stdint.h
+/home/cveney/learning/Mechatronics/Ring_Buffer/stdint.h
+

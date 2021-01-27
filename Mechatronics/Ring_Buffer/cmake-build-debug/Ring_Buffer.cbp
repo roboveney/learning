@@ -78,6 +78,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/cveney/learning/Mechatronics/Ring_Buffer/Ring_Buffer.c">
+			<Option target="Ring_Buffer"/>
+		</Unit>
+		<Unit filename="/home/cveney/learning/Mechatronics/Ring_Buffer/Ring_Buffer.h">
+			<Option target="Ring_Buffer"/>
+		</Unit>
 		<Unit filename="/home/cveney/learning/Mechatronics/Ring_Buffer/main.c">
 			<Option target="Ring_Buffer"/>
 		</Unit>

@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/cveney/learning/Mechatronics/Ring_Buffer/Ring_Buffer.c" "/home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles/Ring_Buffer.dir/Ring_Buffer.c.o"
   "/home/cveney/learning/Mechatronics/Ring_Buffer/main.c" "/home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles/Ring_Buffer.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

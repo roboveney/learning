@@ -3,4 +3,4 @@ project(Ring_Buffer C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Ring_Buffer main.c)
+add_executable(Ring_Buffer main.c Ring_Buffer.c)

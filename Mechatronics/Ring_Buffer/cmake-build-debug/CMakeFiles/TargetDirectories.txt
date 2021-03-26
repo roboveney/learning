@@ -1,3 +1,0 @@
-/home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/cveney/learning/Mechatronics/Ring_Buffer/cmake-build-debug/CMakeFiles/Ring_Buffer.dir
